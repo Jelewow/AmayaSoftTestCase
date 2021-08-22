@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ee08da378e1f64692682fb37c0b5ee, type: 3}
+  m_Name: Letters
+  m_EditorClassIdentifier: 
+  _cards:
+  - {fileID: 11400000, guid: ee2cc952ffc1de242a7a61aa65d236b1, type: 2}
+  - {fileID: 11400000, guid: bdb44c46a23192b4eb7e4c503733f5e4, type: 2}
+  - {fileID: 11400000, guid: e0f5cf665e0ac9847accd0f7d5589e1a, type: 2}
+  - {fileID: 11400000, guid: 47e995404ecaed844ac7824d5615f3be, type: 2}
+  - {fileID: 11400000, guid: d6d9af5ca1d4dc445946e0a9eb53dba4, type: 2}
+  - {fileID: 11400000, guid: 7c914f59fe0a24c47a5cd6df865eedc7, type: 2}
+  - {fileID: 11400000, guid: a60a63fea8c85cd438bc9ca6e915623b, type: 2}
+  - {fileID: 11400000, guid: c6de0df1beb19f44eba5af4774d3773d, type: 2}
+  - {fileID: 11400000, guid: e947aac80660e47418bb131f06ba3055, type: 2}
