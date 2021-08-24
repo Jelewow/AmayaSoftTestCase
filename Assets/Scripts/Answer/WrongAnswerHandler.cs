@@ -5,6 +5,8 @@ namespace Answer
 {
     public class WrongAnswerHandler : AnswerHandler, IAnswerEffectPlayable
     {
+        private readonly Vector3 _shakeVector = new Vector3(1, 0, 0);
+        
         public WrongAnswerHandler(EffectParameter parameters) : base(parameters)
         {
         }
@@ -16,8 +18,7 @@ namespace Answer
 
         private void Shake(GameObject card)
         {
-            Vector3 shakeVector = new Vector3(1, 0, 0);
-            card.transform.DOShakePosition(Duration, shakeVector, Vibrato, Randomness);
+            card.transform.DOShakePosition(Duration, _shakeVector, Vibrato, Randomness);
         }
     }
 }

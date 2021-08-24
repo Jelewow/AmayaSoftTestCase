@@ -5,9 +5,11 @@ namespace Level
     [CreateAssetMenu(fileName = "new Level", menuName = "Level", order = 48)]
     public class LevelData : ScriptableObject
     {
-        [SerializeField] private int _rows;
-        [SerializeField] private int _cols;
+        [SerializeField, Min(1)] private int _rows;
+        [SerializeField, Min(1)] private int _cols;
 
-        public int Amount => _rows * _cols;
+        public int Count => _rows * _cols;
+        public int Rows => _rows;
+        public int Cols => _cols;
     }
 }

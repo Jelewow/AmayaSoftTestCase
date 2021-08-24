@@ -11,9 +11,7 @@ namespace Card
         public IEnumerator GetEnumerator()
         {
             for (int i = 0; i < _cards.Length; i++)
-            {
                 yield return _cards[i];
-            }
         }
     }
 }

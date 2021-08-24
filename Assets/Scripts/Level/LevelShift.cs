@@ -1,12 +1,11 @@
-using Answer;
 using UnityEngine;
 using UnityEngine.Events;
 
 namespace Level
 {
-    public class LevelChanger : MonoBehaviour
+    public class LevelShift : MonoBehaviour
     {
-        [SerializeField] private UnityEvent _GameEnded;
+        [SerializeField] private UnityEvent _gameEnded;
         [SerializeField] private LevelData[] _levels;
 
         private int _currentLevel;
@@ -20,7 +19,7 @@ namespace Level
         {
             if (_currentLevel + 1 >= _levels.Length)
             {
-                _GameEnded?.Invoke();
+                _gameEnded?.Invoke();
                 return;
             }
 
@@ -35,8 +34,8 @@ namespace Level
         public bool IsLastLevel()
         {
             bool isLastLevel = _currentLevel + 1 >= _levels.Length;
-            if (isLastLevel == true)
-                _GameEnded?.Invoke();
+            if (isLastLevel)
+                _gameEnded?.Invoke();
             return isLastLevel;
         }
     }

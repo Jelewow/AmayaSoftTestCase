@@ -9,7 +9,7 @@ namespace Answer
     public class AnswerEffectHandler : MonoBehaviour
     {
         [SerializeField] private BounceEffect _bounceEffect;
-        [SerializeField] private LevelChanger _levelChanger;
+        [SerializeField] private LevelShift _levelShift;
         [SerializeField] private CardParticleTask _particleTask;
         [SerializeField] private UnityEvent _levelCompleted;
         [SerializeField] private AnswerChecker _answerChecker;
@@ -30,7 +30,7 @@ namespace Answer
 
         private void OnCardClick(GameObject card, bool isCorrect)
         {
-            if (isCorrect == true)
+            if (isCorrect)
             {
                 _effect = new CorrectAnswerHandler(_correctEffectParameters, _particleTask, _bounceEffect);
                 StartCoroutine(EventDelay());
@@ -46,10 +46,8 @@ namespace Answer
         private IEnumerator EventDelay()
         {
             yield return new WaitForSeconds(_correctEffectParameters.Duration);
-            if (_levelChanger.IsLastLevel() == false)
-            {
+            if (_levelShift.IsLastLevel() == false)
                 _levelCompleted?.Invoke();
-            }
         }
     }
 }

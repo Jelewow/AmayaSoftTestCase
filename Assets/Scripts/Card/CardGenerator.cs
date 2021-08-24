@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Extensions;
 using Level;
-using Task;
+using Quiz;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -15,8 +15,8 @@ namespace Card
         [SerializeField] private CardPresenter _cardTemplate;
         [SerializeField] private DataSet[] _dataSets;
         [SerializeField] private CardPool _cardPool;
-        [SerializeField] private TaskChooser _taskChooser;
-        [SerializeField] private LevelChanger _levelChanger;
+        [SerializeField] private ExerciseSelectContext _exerciseSelectContext;
+        [SerializeField] private LevelShift _levelShift;
 
         private void Start()
         {
@@ -42,33 +42,31 @@ namespace Card
         private void Init()
         {
             DataSet dataSet = GetRandomDataSet();
-            List<CardData> cardDatas = GetCardDataQueue(dataSet);
-            CardData[] readyCardDatas = GetRandomCardData(_levelChanger.GetCurrentLevel().Amount, cardDatas);
-            Queue<CardData> cardDatasQueue = new Queue<CardData>(readyCardDatas);
-            InstantiateCards(cardDatasQueue);
-            _taskChooser.ChooseTask();
+            List<CardData> cardData = GetCardDataQueue(dataSet);
+            CardData[] readyCardData = GetRandomCardData(_levelShift.GetCurrentLevel().Count, cardData);
+            Queue<CardData> cardDataQueue = new Queue<CardData>(readyCardData);
+            InstantiateCards(cardDataQueue);
+            _exerciseSelectContext.SelectNewExercise();
             _spawned?.Invoke();
         }
 
-        private void InstantiateCards(Queue<CardData> cardDatas)
+        private void InstantiateCards(Queue<CardData> cardData)
         {
-            int cardsAmount = cardDatas.Count;
+            int cardsAmount = cardData.Count;
             for (int i = 0; i < cardsAmount; i++)
             {
                 CardPresenter card = Instantiate(_cardTemplate, transform.position, Quaternion.identity, transform);
-                card.Init(cardDatas.Dequeue());
+                card.Init(cardData.Dequeue());
                 _cardPool.AddCard(card);
             }
         }
 
-        private CardData[] GetRandomCardData(int expectedCards, List<CardData> cardDatas)
+        private CardData[] GetRandomCardData(int expectedCards, List<CardData> cardData)
         {
             CardData[] currentCards = new CardData[expectedCards];
-            cardDatas.Shuffle();
+            cardData.Shuffle();
             for (int i = 0; i < currentCards.Length; i++)
-            {
-                currentCards[i] = cardDatas[i];
-            }
+                currentCards[i] = cardData[i];
 
             return currentCards;
         }
@@ -77,9 +75,7 @@ namespace Card
         {
             List<CardData> cardDatas = new List<CardData>();
             foreach (CardData cardData in dataSet)
-            {
                 cardDatas.Add(cardData);
-            }
 
             return cardDatas;
         }
