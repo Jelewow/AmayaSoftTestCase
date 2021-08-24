@@ -9,6 +9,8 @@ namespace Card
     {
         private readonly List<CardPresenter> _cards = new List<CardPresenter>();
 
+        public int Count => _cards.Count;
+        
         public void AddCard(CardPresenter card)
         {
             _cards.Add(card);
@@ -22,9 +24,7 @@ namespace Card
         public IEnumerator GetEnumerator()
         {
             for (int i = 0; i < _cards.Count; i++)
-            {
                 yield return _cards[i];
-            }
         }
 
         public void ClearPool()

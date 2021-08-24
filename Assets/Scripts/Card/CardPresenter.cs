@@ -7,18 +7,21 @@ namespace Card
 {
     public class CardPresenter : MonoBehaviour, IPointerClickHandler
     {
+        private const float ClickDelay = 2f;
+        
         [SerializeField] private SpriteRenderer _spriteRenderer;
-        private CardData _cardData;
+
         private Coroutine _waiter;
 
         public event Action<CardPresenter> Clicked;
 
-        public CardData CardData => _cardData;
+        public CardData CardData { get; private set; }
         public SpriteRenderer SpriteRenderer => _spriteRenderer;
+        public Vector2 Size => transform.localScale;
 
         public void Init(CardData cardData)
         {
-            _cardData = cardData;
+            CardData = cardData;
             _spriteRenderer.sprite = cardData.Sprite;
         }
 
@@ -33,7 +36,7 @@ namespace Card
 
         private IEnumerator WaitEffect()
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(ClickDelay);
             _waiter = null;
         }
     }

@@ -1,10 +1,10 @@
 using UnityEngine;
 using DG.Tweening;
 
-namespace Task
+namespace Quiz.UI
 {
     [RequireComponent(typeof(CanvasGroup))]
-    public class TaskFadeIn : MonoBehaviour
+    public class FadeCanvasGroup : MonoBehaviour
     {
         private const int EndValue = 1;
 

@@ -1,5 +1,4 @@
 using Card;
-using DG.Tweening;
 using UnityEngine;
 
 namespace Answer

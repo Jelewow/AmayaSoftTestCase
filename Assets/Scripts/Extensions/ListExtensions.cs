@@ -3,9 +3,9 @@ using System;
 
 namespace Extensions
 {
-    public static class ListExtenstions
+    public static class ListExtensions
     {
-        private static readonly Random _random = new Random();
+        private static readonly Random s_Random = new Random();
 
         public static void Shuffle<T>(this IList<T> list)
         {
@@ -13,7 +13,7 @@ namespace Extensions
             while (currentIndex > 1)
             {
                 currentIndex--;
-                int nextIndex = _random.Next(currentIndex + 1);
+                int nextIndex = s_Random.Next(currentIndex + 1);
                 T value = list[nextIndex];
                 list[nextIndex] = list[currentIndex];
                 list[currentIndex] = value;

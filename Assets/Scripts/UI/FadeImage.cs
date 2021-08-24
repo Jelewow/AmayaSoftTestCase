@@ -4,13 +4,13 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-namespace UI
+namespace Quiz.UI
 {
-    public class Fader : MonoBehaviour
+    public class FadeImage : MonoBehaviour
     {
         [SerializeField] private UnityEvent _onScreenLoaded;
         [SerializeField] private Image _image;
-        [SerializeField] private float _endvalue;
+        [SerializeField, Range(0, 1)] private float _endValue;
         [SerializeField] private float _fadeInDuration;
         [SerializeField] private float _fadeOutDuration;
 
@@ -18,7 +18,7 @@ namespace UI
 
         public void FadeIn()
         {
-            Fade(_endvalue, _fadeInDuration);
+            Fade(_endValue, _fadeInDuration);
             StartCoroutine(WaitTweenComplete(_fadeInDuration));
         }
 
@@ -36,10 +36,10 @@ namespace UI
         private IEnumerator WaitTweenComplete(float duration)
         {
             yield return new WaitForSeconds(duration);
-            OnComplete();
+            OnTweenComplete();
         }
 
-        private void OnComplete()
+        private void OnTweenComplete()
         {
             _onScreenLoaded?.Invoke();
         }
